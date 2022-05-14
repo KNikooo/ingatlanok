@@ -1,0 +1,74 @@
+.kepURL img {
+	width: 200px;
+}
+
+td, th, h1 {
+	text-align: center;
+}
+
+.erdekel{display: none;}
+
+@media only screen and (max-width: 770px) {
+  body{
+    background-color: rgba(153, 221, 198, 0.738);
+  }
+
+  .fejlec, .hirdetesDatuma, .tehermentes{
+    display: none;
+  }
+
+  #adatok{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .adat{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 3px;
+  }
+
+  .kategoria{
+    text-align: left;
+    color: aliceblue;
+    background-color: rgb(143, 143, 143);
+    
+  }
+
+  .leiras{
+    text-align: left;
+    background-color: aliceblue;
+  }
+
+  .kepURL{
+    margin: auto;
+    background-color: aliceblue;
+    height: 120px;
+    width: 100%;
+  }
+
+  .kepURL img{
+    height: 100%;
+    width: auto;
+  }
+
+  .erdekel{
+    background-color: aliceblue;
+    display: block;
+  }
+
+  .hirdetesDatuma{
+    text-align: right;
+    display: block;
+    color: white;
+    margin-top: -96px;
+    font-size: 14px;
+  }
+
+  .erdekel button{
+    background-color: rgb(58, 128, 189);
+    color: aliceblue;
+    font-size: 10px;
+  }
+
+}
