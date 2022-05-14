@@ -1,0 +1,90 @@
+composer update  
+
+php artisan make:modal ingatlanok -mf
+->
+use Illuminate\Support\Facades\DB;
+
+        Schema::create('ingatlanoks', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('kategoria')->references('id')->on('kategoriaks');
+            $table->string('leiras');
+            $table->date('hirdetesDatuma');
+            $table->boolean('tehermentes');
+            $table->integer('ar')->nullable();
+            $table->string('kepURL');
+            $table->timestamps();
+        });
+
+DB::table('ingatlanoks')->insert([
+    ['kategoria' => "1",'leiras' =>'Kertvárosi részen...','hirdetesDatuma'=> "2021-01-01",'tehermentes'=>true,'ar'=>26990000,'kepURL'=>'url link'],
+]);
+
+---
+php artisan make:controller API/IngatlanokController
+->
+use App\Models\ingatlanok;
+ public function index(){
+        $ingatlanok = response()->json(ingatlanok::with('kategoriak')->get());
+        return $ingatlanok;
+    }
+
+    public function store(Request $request)
+    {
+        $ingatlanok = new ingatlanok();
+        $ingatlanok->kategoria = $request->kategoria;
+        $ingatlanok->leiras = $request->leiras;
+        $ingatlanok->hirdetesDatuma  = $request->hirdetesDatuma;
+        $ingatlanok->tehermentes  = $request->tehermentes;
+        $ingatlanok->kepURL  = $request->kepURL;
+        $ingatlanok->save();
+    }
+
+    public function update(Request $request, $id)
+    {
+        $ingatlanok = ingatlanok::findOrFail($id);
+        
+        $ingatlanok->kategoria = $request->get('kategoria');
+        $ingatlanok->leiras = $request->get('leiras');
+        $ingatlanok->hirdetesDatuma  = $request->get('hirdetesDatuma');
+        $ingatlanok->tehermentes  = $request->get('tehermentes');
+        $ingatlanok->kepURL  = $request->get('kepURL');
+        $ingatlanok->save();
+        return response()->json($ingatlanok);
+    }
+
+    public function destroy($id)
+    {
+        $ingatlanok = ingatlanok::findOrFail($id);
+        $ingatlanok->delete();
+    } 
+
+---
+php artisan make:controller API/KategoriakController
+->
+use App\Models\kategoriak;
+
+    public function index(){
+        return response()->json(kategoriak::all());
+    }
+---
+models::
+ingatlanok.php
+
+ public function kategoriak(){
+        return $this->hasOne(kategoriak::class, 'id', 'kategoria');
+    }
+---
+
+route:
+api.php
+
+use App\Http\Controllers\API\IngatlanokController;
+use App\Http\Controllers\API\KategoriakController;
+
+Route::apiResource('ingatlanok', IngatlanokController::class);
+Route::apiResource('kategoriak', KategoriakController::class);
+
+php artisan migrate  
+php artisan migrate:fresh
+
+php artisan serve --host=localhost

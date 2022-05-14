@@ -1,0 +1,45 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <script src="../ajax.js"></script>
+        <script src="../ingatlanClass.js"></script>
+        <script src="../ingatlanok.js"></script>
+        <script src="../js.js"></script>
+        <link rel="stylesheet" href="../css.css">
+
+<body class="container">       
+        <h1 id="ajanlataink">Ajánlataink</h1>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="fejlec" scope="col">Kategória</th>
+                        <th class="fejlec" scope="col">Leírás</th>
+                        <th class="fejlec" scope="col">Hirdetés dátuma</th>
+                        <th class="fejlec" scope="col">Tehermentes</th>
+                        <th class="fejlec" scope="col">Fénykép</th>
+                    </tr>
+                </thead>
+                <tbody id="adatok"></tbody>
+                <tbody id="sablon">
+                    <tr class="adat">
+                        <td class="align-middle kategoria"></td>
+                        <td class="align-middle leiras"></td>
+                        <td class="align-middle hirdetesDatuma"></td>
+                        <td class="align-middle tehermentes"></td>
+                        <td class="align-middle kepURL"><img  src="" alt=""></td>
+                        <td class="erdekel">
+                            <button class="btn btn-light" id="erdekelAdat" type="button" data-toggle="modal" data-target="#exampleModalCenter">
+                            Érdekel
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div id="ujAdatForm">
+            
+        </div>
+    </div>
+    </body>
